@@ -2,7 +2,8 @@ const db = require('../data/dbConfig')
 
 module.exports = {
     find,
-    add
+    add,
+    addResourceToProject
 }
 
 function find() {
@@ -11,5 +12,10 @@ function find() {
 
 function add(resource) {
     return db('resources').insert(resource)
+        .then(([id]) => id)
+}
+
+function addResourceToProject(input) {
+    return db('project_resource').insert(input)
         .then(([id]) => id)
 }

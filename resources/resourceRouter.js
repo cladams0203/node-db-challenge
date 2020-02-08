@@ -24,4 +24,15 @@ router.post('/', (req,res) => {
         })
 })
 
+router.post('/addproject', (req,res) => {
+    db.addResourceToProject(req.body)
+        .then(item => {
+            res.status(201).json(item)
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).json({message: 'Failed to add resource to project'})
+        })
+})
+
 module.exports = router

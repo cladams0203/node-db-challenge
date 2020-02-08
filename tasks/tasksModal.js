@@ -27,3 +27,4 @@ function add(task) {
     return db('tasks').insert(task)
         .then(([id]) => id)
 }
+

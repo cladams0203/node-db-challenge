@@ -11,10 +11,14 @@ function find() {
 }
 
 function findById(id) {
-    return db('projects').where({ id })
+    return db('project_resource')
+        .join('projects', 'projects.id', 'project_id')
+        .join('resources', 'resources.id', 'resource_id')
+        .where('projects.id', id)
 }
 
 function add(project) {
     return db('projects').insert(project)
         .then((id) => id)
 }
+
